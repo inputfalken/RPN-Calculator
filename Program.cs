@@ -14,11 +14,11 @@ namespace ConsoleApplication {
         input = Console.ReadLine();
         if(input == "calc") break;
         else {
-          var token = calculator.Input(input);
+          var token = calculator.ReadInput(input);
           if (token == Token.Number) Console.WriteLine("Number Added");
           else if (token == Token.Operator) Console.WriteLine($"Value {calculator.Result}");
-          else if (token == Token.Invalid) Console.WriteLine("Invalid");
-          else if (token == Token.Unknown) Console.WriteLine($"ERROR Unkown input {input}");
+          else if (token == Token.Invalid) Console.WriteLine("Invalid Input");
+          else if (token == Token.Unknown) Console.WriteLine($"Unkown input {input}");
         }
       }
 

@@ -13,7 +13,7 @@ namespace ConsoleApplication {
       return this;
     }
 
-    public Token Input(string input) {
+    public Token ReadInput(string input) {
       input = input.Trim();
       int value = 0;
       if (int.TryParse(input, out value)){
