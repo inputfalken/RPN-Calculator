@@ -10,37 +10,19 @@ namespace ConsoleApplication {
       var calculator = new Calculator();
       Console.WriteLine("Type your Expression");
       string input = string.Empty;
-
       while(true) {
         input = Console.ReadLine();
         if(input == "calc") break;
         else {
-          Calculate(input, calculator);
+          var token = calculator.Input(input);
+          if (token == Token.Number) Console.WriteLine("Number Added");
+          else if (token == Token.Operator) Console.WriteLine($"Value {calculator.Result}");
+          else if (token == Token.Invalid) Console.WriteLine("Invalid");
+          else if (token == Token.Unknown) Console.WriteLine($"ERROR Unkown input {input}");
         }
       }
 
       Console.WriteLine(calculator.Result);
-    }
-    private static void Calculate(string input, Calculator calculator) {
-      int value = 0;
-      if (int.TryParse(input, out value)){
-        calculator.AppendNumber(value);
-      }
-      else if (input == "+") {
-        calculator.Addition();
-      }
-      else if (input == "-") {
-        calculator.Subtract();
-      }
-      else if (input == "*") {
-        calculator.Times();
-      }
-      else if (input == "/") {
-        calculator.Divide();
-      }
-      else {
-        Console.WriteLine($"ERROR ON {input}");
-      }
     }
   }
 }
