@@ -10,8 +10,8 @@ namespace ConsoleApplication {
       return this;
     }
     public Calculator Addition() {
-        _queue.Enqueue(_queue.Dequeue() + _queue.Dequeue());
-        return this;
+      _queue.Enqueue(_queue.Dequeue() + _queue.Dequeue());
+      return this;
     }
 
     public Calculator Subtract() {
