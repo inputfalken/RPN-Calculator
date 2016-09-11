@@ -8,59 +8,33 @@ namespace ConsoleApplication {
 
     public int Result => _queue.Peek();
 
-    public Calculator AppendNumber(int num) {
-      _queue.Enqueue(num);
-      return this;
-    }
-
     public Token ReadInput(string input) {
       input = input.Trim();
       int value = 0;
       if (int.TryParse(input, out value)){
-        AppendNumber(value);
+        _queue.Enqueue(value);
         return Token.Number;
       }
-      else {
+      if (_queue.Count >= 2){
         if (input == "+") {
-          Addition();
+          _queue.Enqueue(PerformCalculation((x,y) => x + y));
           return Token.Operator;
         }
         if (input == "-") {
-          Subtract();
+          _queue.Enqueue(PerformCalculation((x,y) => x - y));
           return Token.Operator;
         }
         if (input == "*") {
-          Times();
+          _queue.Enqueue(PerformCalculation((x,y) => x * y));
           return Token.Operator;
         }
         if (input == "/") {
-          Divide();
+          _queue.Enqueue(PerformCalculation((x,y) => x / y));
           return Token.Operator;
         }
       }
       return Token.Invalid;
     }
-
-    public Calculator Addition() {
-      _queue.Enqueue(PerformCalculation((x,y) => x + y));
-      return this;
-    }
-
-    public Calculator Subtract() {
-      _queue.Enqueue(PerformCalculation((x,y) => x - y));
-      return this;
-    }
-
-    public Calculator Times() {
-      _queue.Enqueue(PerformCalculation((x,y) => x * y));
-      return this;
-    }
-
-    public Calculator Divide() {
-      _queue.Enqueue(PerformCalculation((x,y) => x / y));
-      return this;
-    }
-
     private int PerformCalculation(Func<int,int,int> func){
       return func(_queue.Dequeue(),_queue.Dequeue());
     }
