@@ -3,7 +3,9 @@ using System;
 using System.Linq;
 namespace ConsoleApplication {
   public class Calculator {
-    Queue<int> _queue = new Queue<int>();
+
+    private Queue<int> _queue = new Queue<int>();
+
     public int Result => _queue.Peek();
 
     public Calculator AppendNumber(int num) {
@@ -12,12 +14,17 @@ namespace ConsoleApplication {
     }
 
     public Calculator Addition() {
-      _queue.Enqueue(PerformCalculation((x,y)=> x + y));
+      _queue.Enqueue(PerformCalculation((x,y) => x + y));
       return this;
     }
 
     public Calculator Subtract() {
       _queue.Enqueue(PerformCalculation((x,y) => x - y));
+      return this;
+    }
+
+    public Calculator Times() {
+      _queue.Enqueue(PerformCalculation((x,y) => x * y));
       return this;
     }
 
