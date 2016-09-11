@@ -3,7 +3,7 @@ using System.Linq;
 namespace ConsoleApplication {
   public class Calculator {
     Queue<int> _queue = new Queue<int>();
-    public int result => _queue.Peek();
+    public int Result => _queue.Peek();
 
     public Calculator AppendNumber(int num) {
       _queue.Enqueue(num);
