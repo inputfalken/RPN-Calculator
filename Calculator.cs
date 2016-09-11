@@ -8,7 +8,12 @@ namespace ConsoleApplication {
       _queue.Enqueue(num);
       return this;
     }
-    public int Addition() => _queue.Sum();
+    public int Addition() {
+      var num = _queue.Dequeue();
+      while(_queue.Any())
+        num += _queue.Dequeue();
+      return num;
+    }
 
     public int Subtract() {
       var num = _queue.Dequeue();
