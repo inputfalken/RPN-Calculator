@@ -14,18 +14,9 @@ namespace ConsoleApplication {
         return this;
     }
 
-    public int Subtract() {
-      var num = _queue.Dequeue();
-      while(_queue.Any()) {
-        num -= _queue.Dequeue();
-      }
-      return num;
-    }
-    public int Times() {
-      var num = _queue.Dequeue();
-      while(_queue.Any())
-        num *= _queue.Dequeue();
-      return num;
+    public Calculator Subtract() {
+      _queue.Enqueue(_queue.Dequeue() - _queue.Dequeue());
+      return this;
     }
   }
 }
