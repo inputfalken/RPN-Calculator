@@ -28,6 +28,11 @@ namespace ConsoleApplication {
       return this;
     }
 
+    public Calculator Divide() {
+      _queue.Enqueue(PerformCalculation((x,y) => x / y));
+      return this;
+    }
+
     private int PerformCalculation(Func<int,int,int> func){
       return func(_queue.Dequeue(),_queue.Dequeue());
     }
