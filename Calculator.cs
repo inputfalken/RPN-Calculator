@@ -20,28 +20,25 @@ namespace ConsoleApplication {
         AppendNumber(value);
         return Token.Number;
       }
-      if (_queue.Count < 2) {
-        return Token.Invalid;
-      }
       else {
-         if (input == "+") {
+        if (input == "+") {
           Addition();
           return Token.Operator;
         }
-        else if (input == "-") {
+        if (input == "-") {
           Subtract();
           return Token.Operator;
         }
-        else if (input == "*") {
+        if (input == "*") {
           Times();
           return Token.Operator;
         }
-        else if (input == "/") {
+        if (input == "/") {
           Divide();
           return Token.Operator;
         }
       }
-      return Token.Unknown;
+      return Token.Invalid;
     }
 
     public Calculator Addition() {
@@ -71,7 +68,6 @@ namespace ConsoleApplication {
   public enum Token {
     Number,
     Operator,
-    Invalid,
-    Unknown
+    Invalid
   }
 }
