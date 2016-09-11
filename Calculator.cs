@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using System.Linq;
 namespace ConsoleApplication {
   public class Calculator {
@@ -9,14 +10,19 @@ namespace ConsoleApplication {
       _queue.Enqueue(num);
       return this;
     }
+
     public Calculator Addition() {
-      _queue.Enqueue(_queue.Dequeue() + _queue.Dequeue());
+      _queue.Enqueue(PerformCalculation((x,y)=> x + y));
       return this;
     }
 
     public Calculator Subtract() {
-      _queue.Enqueue(_queue.Dequeue() - _queue.Dequeue());
+      _queue.Enqueue(PerformCalculation((x,y) => x - y));
       return this;
+    }
+
+    private int PerformCalculation(Func<int,int,int> func){
+      return func(_queue.Dequeue(),_queue.Dequeue());
     }
   }
 }
