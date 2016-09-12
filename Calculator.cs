@@ -24,6 +24,13 @@ namespace ConsoleApplication {
         return Token.Clear;
 
       }
+
+      if(Stack.Count >= 1){
+        if (input == "sqrt") {
+          Stack.Push(Math.Sqrt(Stack.Pop()));
+          return Token.Operator;
+        }
+      }
       if (Stack.Count >= 2){
         if (input == "+") {
           Stack.Push(PerformCalculation((x,y) => x + y));
