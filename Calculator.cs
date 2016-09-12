@@ -19,6 +19,11 @@ namespace ConsoleApplication {
         Stack.Push(value);
         return Token.Number;
       }
+      if (input == "clear") {
+        Stack.Clear();
+        return Token.Clear;
+
+      }
       if (Stack.Count >= 2){
         if (input == "+") {
           Stack.Push(PerformCalculation((x,y) => x + y));
@@ -46,6 +51,7 @@ namespace ConsoleApplication {
   public enum Token {
     Number,
     Operator,
-    Invalid
+    Invalid,
+    Clear
   }
 }
