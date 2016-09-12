@@ -11,6 +11,7 @@ namespace ConsoleApplication {
     }
 
     public double Result => Stack.Peek();
+    public string Calculation {get; private set;}
 
     public Token ReadInput(string input) {
       input = input.Trim();
@@ -27,29 +28,45 @@ namespace ConsoleApplication {
 
       if(Stack.Count >= 1){
         if (input == "sqrt") {
-          Stack.Push(Math.Sqrt(Stack.Pop()));
+          var num = Stack.Pop();
+          Calculation = $"√{num}";
+          Stack.Push(Math.Sqrt(num));
           return Token.Operator;
         }
       }
       if (Stack.Count >= 2){
         if (input == "+") {
-          Stack.Push(PerformCalculation((x,y) => x + y));
+          Stack.Push(PerformCalculation((x,y) => {
+                return x + y;
+                }));
           return Token.Operator;
         }
         if (input == "-") {
-          Stack.Push(PerformCalculation((x,y) => y - x ));
+          Stack.Push(PerformCalculation((x,y) => {
+                Calculation = $"{y} - {x}";
+                return y - x;
+                }));
           return Token.Operator;
         }
         if (input == "*") {
-          Stack.Push(PerformCalculation((x,y) => x * y));
+          Stack.Push(PerformCalculation((x,y) => {
+                Calculation = $"{x} * {y}";
+                return x * y;
+                }));
           return Token.Operator;
         }
         if (input == "/") {
-          Stack.Push(PerformCalculation((x,y) => y / x));
+          Stack.Push(PerformCalculation((x,y) => {
+                Calculation = $"{y} / {x}";
+                return y / x;
+                }));
           return Token.Operator;
         }
         if (input == "pow") {
-          Stack.Push(PerformCalculation((x,y) => Math.Pow(x,y)));
+          Stack.Push(PerformCalculation((x,y) => {
+                Calculation = $"{x} ^ {y}";
+                return Math.Pow(x,y);
+                }));
           return Token.Operator;
         }
 

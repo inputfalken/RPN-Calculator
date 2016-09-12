@@ -16,7 +16,7 @@ namespace ConsoleApplication {
         else {
           var token = calculator.ReadInput(input);
           if (token == Token.Number) Console.WriteLine($"Number {input} Added");
-          else if (token == Token.Operator) Console.WriteLine($"Value after Operation: {calculator.Result}");
+          else if (token == Token.Operator) Console.WriteLine($"Performed operation: {calculator.Calculation}, new value: {calculator.Result} ");
           else if (token == Token.Clear) Console.WriteLine("Cleared Calculator");
           else if (token == Token.Invalid) Console.WriteLine("Invalid Input");
         }
