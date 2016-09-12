@@ -46,10 +46,6 @@ namespace ConsoleApplication {
           return Token.Operator;
         }
 
-        if (input == "sqrt") {
-          Stack.Push(PerformCalculation((x,y) => Math.Sqrt(x,y)));
-          return Token.Operator;
-        }
       }
       return Token.Invalid;
     }
