@@ -4,18 +4,18 @@ using System.Linq;
 namespace ConsoleApplication {
   public class Calculator {
 
-    private Stack<int> Stack {get;}
+    private Stack<double> Stack {get;}
 
     public Calculator(){
-      Stack = new Stack<int>();
+      Stack = new Stack<double>();
     }
 
-    public int Result => Stack.Peek();
+    public double Result => Stack.Peek();
 
     public Token ReadInput(string input) {
       input = input.Trim();
-      int value = 0;
-      if (int.TryParse(input, out value)){
+      double value = 0;
+      if (double.TryParse(input, out value)){
         Stack.Push(value);
         return Token.Number;
       }
@@ -36,16 +36,21 @@ namespace ConsoleApplication {
           Stack.Push(PerformCalculation((x,y) => y / x));
           return Token.Operator;
         }
+        if (input == "pow") {
+          Stack.Push(PerformCalculation((x,y) => Math.Pow(x,y)));
+          return Token.Operator;
+        }
       }
       return Token.Invalid;
     }
-    private int PerformCalculation(Func<int,int,int> func){
+    private double PerformCalculation(Func<double,double,double> func){
       return func(Stack.Pop(),Stack.Pop());
     }
   }
   public enum Token {
     Number,
     Operator,
-    Invalid
+    Invalid,
+    Clear
   }
 }
