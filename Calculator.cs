@@ -17,7 +17,7 @@ namespace ConsoleApplication {
       double value = 0;
       if (double.TryParse(input, out value)){
         Stack.Push(value);
-        return Status.Number;
+        return Status.NumberAdded;
       }
       if (input == "clear") {
         Stack.Clear();
@@ -60,7 +60,7 @@ namespace ConsoleApplication {
     }
   }
   public enum Status {
-    Number,
+    NumberAdded,
     OperatorAdded,
     Fail,
     Clear
