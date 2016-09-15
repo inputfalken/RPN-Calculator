@@ -54,7 +54,7 @@ namespace ConsoleApplication {
         }
 
       }
-      return Status.Invalid;
+      return Status.Fail;
     }
     private double PerformCalculation(Func<double,double,double> func){
       return func(Stack.Pop(),Stack.Pop());
@@ -63,7 +63,7 @@ namespace ConsoleApplication {
   public enum Status {
     Number,
     Operator,
-    Invalid,
+    Fail,
     Clear
   }
 }
