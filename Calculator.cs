@@ -12,55 +12,55 @@ namespace ConsoleApplication {
 
     public double Result => Stack.Peek();
 
-    public Token ReadInput(string input) {
+    public Status ReadInput(string input) {
       input = input.Trim();
       double value = 0;
       if (double.TryParse(input, out value)){
         Stack.Push(value);
-        return Token.Number;
+        return Status.Number;
       }
       if (input == "clear") {
         Stack.Clear();
-        return Token.Clear;
+        return Status.Clear;
 
       }
 
       if(Stack.Count >= 1){
         if (input == "sqrt") {
           Stack.Push(Math.Sqrt(Stack.Pop()));
-          return Token.Operator;
+          return Status.Operator;
         }
       }
       if (Stack.Count >= 2){
         if (input == "+") {
           Stack.Push(PerformCalculation((x,y) => x + y));
-          return Token.Operator;
+          return Status.Operator;
         }
         if (input == "-") {
           Stack.Push(PerformCalculation((x,y) => y - x ));
-          return Token.Operator;
+          return Status.Operator;
         }
         if (input == "*") {
           Stack.Push(PerformCalculation((x,y) => x * y));
-          return Token.Operator;
+          return Status.Operator;
         }
         if (input == "/") {
           Stack.Push(PerformCalculation((x,y) => y / x));
-          return Token.Operator;
+          return Status.Operator;
         }
         if (input == "pow") {
           Stack.Push(PerformCalculation((x,y) => Math.Pow(x,y)));
-          return Token.Operator;
+          return Status.Operator;
         }
 
       }
-      return Token.Invalid;
+      return Status.Invalid;
     }
     private double PerformCalculation(Func<double,double,double> func){
       return func(Stack.Pop(),Stack.Pop());
     }
   }
-  public enum Token {
+  public enum Status {
     Number,
     Operator,
     Invalid,
