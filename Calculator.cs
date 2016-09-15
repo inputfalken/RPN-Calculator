@@ -28,29 +28,29 @@ namespace ConsoleApplication {
       if(Stack.Count >= 1){
         if (input == "sqrt") {
           Stack.Push(Math.Sqrt(Stack.Pop()));
-          return Status.Operator;
+          return Status.OperatorAdded;
         }
       }
       if (Stack.Count >= 2){
         if (input == "+") {
           Stack.Push(PerformCalculation((x,y) => x + y));
-          return Status.Operator;
+          return Status.OperatorAdded;
         }
         if (input == "-") {
           Stack.Push(PerformCalculation((x,y) => y - x ));
-          return Status.Operator;
+          return Status.OperatorAdded;
         }
         if (input == "*") {
           Stack.Push(PerformCalculation((x,y) => x * y));
-          return Status.Operator;
+          return Status.OperatorAdded;
         }
         if (input == "/") {
           Stack.Push(PerformCalculation((x,y) => y / x));
-          return Status.Operator;
+          return Status.OperatorAdded;
         }
         if (input == "pow") {
           Stack.Push(PerformCalculation((x,y) => Math.Pow(x,y)));
-          return Status.Operator;
+          return Status.OperatorAdded;
         }
 
       }
@@ -62,7 +62,7 @@ namespace ConsoleApplication {
   }
   public enum Status {
     Number,
-    Operator,
+    OperatorAdded,
     Fail,
     Clear
   }
