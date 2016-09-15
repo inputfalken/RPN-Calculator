@@ -22,7 +22,6 @@ namespace ConsoleApplication {
       if (input == "clear") {
         Stack.Clear();
         return Status.Clear;
-
       }
 
       if(Stack.Count >= 1){
