@@ -8,7 +8,7 @@ namespace ConsoleApplication {
 
     private static void Start() {
       var calculator = new Calculator();
-      Console.WriteLine("Type your Expression");
+      Console.WriteLine("Input numbers...");
       string input = string.Empty;
       while(true) {
         input = Console.ReadLine();
