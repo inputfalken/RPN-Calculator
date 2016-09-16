@@ -15,10 +15,10 @@ namespace ConsoleApplication {
         if(input == "calc") break;
         else {
           var token = calculator.ReadInput(input);
-          if (token == Token.Number) Console.WriteLine($"Number {input} Added");
-          else if (token == Token.Operator) Console.WriteLine($"Value after Operation: {calculator.Result}");
-          else if (token == Token.Clear) Console.WriteLine("Cleared Calculator");
-          else if (token == Token.Invalid) Console.WriteLine("Invalid Input");
+          if (token == Status.NumberAdded) Console.WriteLine($"Number {input} Added");
+          else if (token == Status.OperatorAdded) Console.WriteLine($"Value after Operation: {calculator.Result}");
+          else if (token == Status.Clear) Console.WriteLine("Cleared Calculator");
+          else if (token == Status.Fail) Console.WriteLine("Fail Input");
         }
       }
 

@@ -12,23 +12,22 @@ namespace ConsoleApplication {
 
     public double Result => Stack.Peek();
 
-    public Token ReadInput(string input) {
+    public Status ReadInput(string input) {
       input = input.Trim();
       double value = 0;
       if (double.TryParse(input, out value)){
         Stack.Push(value);
-        return Token.Number;
+        return Status.NumberAdded;
       }
       if (input == "clear") {
         Stack.Clear();
-        return Token.Clear;
-
+        return Status.Clear;
       }
 
       if(Stack.Count >= 1){
         if (input == "sqrt") {
           Stack.Push(Math.Sqrt(Stack.Pop()));
-          return Token.Operator;
+          return Status.OperatorAdded;
         }
       }
       if (Stack.Count >= 2){
@@ -49,17 +48,17 @@ namespace ConsoleApplication {
         }
 
       }
-      return Token.Invalid;
+      return Status.Fail;
     }
-    private Token PerformCalculation(Func<double,double,double> func){
+    private Status PerformCalculation(Func<double,double,double> func){
       Stack.Push(func(Stack.Pop(),Stack.Pop()));
-      return Token.Operator;
+      return Status.OperatorAdded;
     }
   }
-  public enum Token {
-    Number,
-    Operator,
-    Invalid,
+  public enum Status {
+    NumberAdded,
+    OperatorAdded,
+    Fail,
     Clear
   }
 }
