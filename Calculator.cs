@@ -11,6 +11,7 @@ namespace ConsoleApplication {
     }
 
     public double Result => Stack.Peek();
+    public string Calculation {get; private set;}
 
     public Status ReadInput(string input) {
       input = input.Trim();
@@ -26,27 +27,44 @@ namespace ConsoleApplication {
 
       if(Stack.Count >= 1){
         if (input == "sqrt") {
-          Stack.Push(Math.Sqrt(Stack.Pop()));
+          var num = Stack.Pop();
+          Calculation = $"√{num}";
+          Stack.Push(Math.Sqrt(num));
           return Status.OperatorAdded;
         }
       }
       if (Stack.Count >= 2){
         if (input == "+") {
-          return PerformCalculation((x,y) => x + y);
+          return PerformCalculation((x,y) => {
+              Calculation = $"{x} + {y}";
+              return x + y;
+              });
         }
         if (input == "-") {
-          return PerformCalculation((x,y) => y - x );
+          return PerformCalculation((x,y) => {
+              Calculation = $"{y} - {x}";
+              return y - x;
+              });
         }
         if (input == "*") {
-          return PerformCalculation((x,y) => x * y);
+          return PerformCalculation((x,y) => {
+
+              Calculation = $"{x} * {y}";
+              return x * y;
+              });
         }
         if (input == "/") {
-          return PerformCalculation((x,y) => y / x);
+          return PerformCalculation((x,y) =>{
+              Calculation = $"{y} / {x}";
+              return y / x;
+              });
         }
         if (input == "pow") {
-          return PerformCalculation((x,y) => Math.Pow(x,y));
+          return PerformCalculation((x,y) => {
+              Calculation = $"{x} ^ {y}";
+              return Math.Pow(x,y);
+              });
         }
-
       }
       return Status.Fail;
     }
