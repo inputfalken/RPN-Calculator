@@ -33,31 +33,27 @@ namespace ConsoleApplication {
       }
       if (Stack.Count >= 2){
         if (input == "+") {
-          Stack.Push(PerformCalculation((x,y) => x + y));
-          return Token.Operator;
+          return PerformCalculation((x,y) => x + y);
         }
         if (input == "-") {
-          Stack.Push(PerformCalculation((x,y) => y - x ));
-          return Token.Operator;
+          return PerformCalculation((x,y) => y - x );
         }
         if (input == "*") {
-          Stack.Push(PerformCalculation((x,y) => x * y));
-          return Token.Operator;
+          return PerformCalculation((x,y) => x * y);
         }
         if (input == "/") {
-          Stack.Push(PerformCalculation((x,y) => y / x));
-          return Token.Operator;
+          return PerformCalculation((x,y) => y / x);
         }
         if (input == "pow") {
-          Stack.Push(PerformCalculation((x,y) => Math.Pow(x,y)));
-          return Token.Operator;
+          return PerformCalculation((x,y) => Math.Pow(x,y));
         }
 
       }
       return Token.Invalid;
     }
-    private double PerformCalculation(Func<double,double,double> func){
-      return func(Stack.Pop(),Stack.Pop());
+    private Token PerformCalculation(Func<double,double,double> func){
+      Stack.Push(func(Stack.Pop(),Stack.Pop()));
+      return Token.Operator;
     }
   }
   public enum Token {
